@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alondra</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(to bottom, #FFEB3B 88%, black 12%); /* Adjusted yellow color */
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .imagen {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background-color: #000000;
+      padding: 10px 0;
+    }
+
+   #imagen img {
+    max-width: 80%;
+    height: auto;
+    margin-left: -50px; /* Ajusta este valor según sea necesario */
+}
+
+
+    #voz {
+      background-image: url("imagenes/4.png");
+      background-color: transparent;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      color: transparent;
+      font-size: 4vw;
+      padding: 180px 140px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      margin-top: 1vh;
+      transform: scale(1.1);
+    }
+
+
+    h1 {
+      font-size: 2.5em;
+      color: black;
+      margin-top: 10px; /* Reduced margin-top to move the text up */
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome-message {
+      font-size: 1.8em;
+      color: black;
+      margin: 10px 10%; /* Reduced margin to move the text up */
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+
+  </style>
+  <link rel="icon" href="https://alondraresponde.000webhostapp.com/imagenes/icon.png" type="image/png">
+</head>
+<body>
+  <h1>Hola, Soy Alondra, tu asistente virtual.</h1>
+  <p class="welcome-message">Hazme las consultas que necesites saber.</p>
+  <button id="voz"></button>
+  <div class="imagen" id="imagen"> 
+    <img src="imagenes/CONECTA.png" alt="Conectamos imagen">
+  </div>
+  <div class="chat-icon"></div>
+
+  <script>
+  // Configura las opciones para el chat de Watson Assistant
+  window.watsonAssistantChatOptions = {
+    // ID de la integración del chat de Watson Assistant.
+    integrationID: "fa7cb014-8dc9-423f-ab99-49226835599c",
+    // Región donde está alojada la integración.
+    region: "au-syd",
+    // ID de la instancia del servicio de Watson Assistant.
+    serviceInstanceID: "292efa88-3f49-4b74-a98d-6d00402d2530",
+    // Función que se ejecuta cuando el chat se ha cargado.
+    onLoad: async (instance) => { 
+      // Renderiza la interfaz del chat.
+      await instance.render(); 
+    }
+  };
+
+  // Establece un temporizador para ejecutar una función después de un retraso.
+  setTimeout(function(){
+    // Crea un elemento de script.
+    const t = document.createElement('script');
+    // Establece la fuente del script para cargar el chat de Watson Assistant.
+    t.src = "https://web-chat.global.assistant.watson.appdomain.cloud/versions/" + 
+      // Utiliza la versión del cliente especificada en las opciones o la versión 'latest' (más reciente).
+      (window.watsonAssistantChatOptions.clientVersion || 'latest') + 
+      "/WatsonAssistantChatEntry.js";
+    // Agrega el elemento de script al encabezado del documento.
+    document.head.appendChild(t);
+  });
+</script>
+
+</body>
+</html>
